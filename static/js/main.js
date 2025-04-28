@@ -280,50 +280,9 @@ function initializeInvoicePage() {
         });
     }
     
-    // Send Invoice
-    const sendInvoiceButton = document.querySelector('#send-invoice');
-    if (sendInvoiceButton) {
-        sendInvoiceButton.addEventListener('click', function() {
-            // Populate recipient email if available
-            const clientEmail = document.querySelector('#client_email')?.value;
-            const emailInput = document.querySelector('#send_email');
-            
-            if (clientEmail && emailInput) {
-                emailInput.value = clientEmail;
-            }
-            
-            // Show send modal
-            const sendModal = new bootstrap.Modal(document.querySelector('#sendModal'));
-            sendModal.show();
-        });
-    }
+    // Email functionality removed
     
-    // Send Email Button
-    const sendEmailButton = document.querySelector('#send-email-btn');
-    if (sendEmailButton) {
-        sendEmailButton.addEventListener('click', function() {
-            const email = document.querySelector('#send_email')?.value;
-            const message = document.querySelector('#email_message')?.value;
-            
-            if (!email) {
-                alert('Please enter a recipient email address.');
-                return;
-            }
-            
-            // First generate the PDF if not already generated
-            const generatePdfEvent = new Event('click');
-            generatePdfButton.dispatchEvent(generatePdfEvent);
-            
-            // Then send the email with the PDF
-            // This would typically call a server endpoint to send the email
-            // For now, we'll just show a success message
-            alert(`Invoice would be sent to ${email}\n\nThis feature is not fully implemented yet.`);
-            
-            // Close the modal
-            const sendModal = bootstrap.Modal.getInstance(document.querySelector('#sendModal'));
-            sendModal.hide();
-        });
-    }
+    // End of invoice page functionality
     
     // Currency formatting for inputs
     document.querySelectorAll('.currency-input').forEach(input => {
