@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="240" fill="#3498db" />
-  <circle cx="256" cy="256" r="200" fill="white" />
-  <circle cx="256" cy="256" r="20" fill="#3498db" />
-  <path d="M256 76V256" stroke="#3498db" stroke-width="16" stroke-linecap="round" />
-  <path d="M256 256L356 156" stroke="#3498db" stroke-width="16" stroke-linecap="round" />
-  <path d="M76 256H120" stroke="#3498db" stroke-width="8" stroke-linecap="round" />
-  <path d="M392 256H436" stroke="#3498db" stroke-width="8" stroke-linecap="round" />
-  <path d="M256 392V436" stroke="#3498db" stroke-width="8" stroke-linecap="round" />
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#0066ff" opacity="0.1"/>
+  
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="220" stroke="#0066ff" stroke-width="8" fill="white"/>
+  
+  <!-- Cardinal Points -->
+  <text x="256" y="90" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0066ff" text-anchor="middle">N</text>
+  <text x="256" y="440" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0066ff" text-anchor="middle">S</text>
+  <text x="90" y="265" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0066ff" text-anchor="middle">W</text>
+  <text x="420" y="265" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#0066ff" text-anchor="middle">E</text>
+  
+  <!-- Compass Needle -->
+  <path d="M256 140 L276 240 L256 270 L236 240 Z" fill="#0066ff"/>
+  <path d="M256 270 L276 300 L256 370 L236 300 Z" fill="#0066ff" opacity="0.6"/>
+  
+  <!-- Center Point -->
+  <circle cx="256" cy="256" r="15" fill="#0066ff"/>
+  <circle cx="256" cy="256" r="8" fill="white"/>
+  
+  <!-- Tick Marks -->
+  <path d="M256 120 L256 140" stroke="#0066ff" stroke-width="3"/>
+  <path d="M256 372 L256 392" stroke="#0066ff" stroke-width="3"/>
+  <path d="M120 256 L140 256" stroke="#0066ff" stroke-width="3"/>
+  <path d="M372 256 L392 256" stroke="#0066ff" stroke-width="3"/>
+  
+  <!-- Diagonal Tick Marks -->
+  <path d="M176 176 L190 190" stroke="#0066ff" stroke-width="3"/>
+  <path d="M322 322 L336 336" stroke="#0066ff" stroke-width="3"/>
+  <path d="M176 336 L190 322" stroke="#0066ff" stroke-width="3"/>
+  <path d="M322 190 L336 176" stroke="#0066ff" stroke-width="3"/>
 </svg>

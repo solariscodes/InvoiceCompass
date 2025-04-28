@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="#0066ff" opacity="0.1"/>
+  
+  <!-- Outer Ring -->
+  <circle cx="32" cy="32" r="28" stroke="#0066ff" stroke-width="2" fill="white"/>
+  
+  <!-- Compass Needle -->
+  <path d="M32 14 L36 30 L32 34 L28 30 Z" fill="#0066ff"/>
+  <path d="M32 34 L36 38 L32 50 L28 38 Z" fill="#0066ff" opacity="0.6"/>
+  
+  <!-- Center Point -->
+  <circle cx="32" cy="32" r="4" fill="#0066ff"/>
+  <circle cx="32" cy="32" r="2" fill="white"/>
+</svg>
