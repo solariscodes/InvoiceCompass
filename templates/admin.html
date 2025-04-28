@@ -2,9 +2,9 @@
 
 {% block title %}Admin Dashboard - InvoiceCompass{% endblock %}
 
-{% block meta_description %}Admin dashboard for InvoiceCompass - Monitor usage statistics and application performance.{% endblock %}
+{% block meta_description %}Admin dashboard for InvoiceCompass - Monitor HTTP traffic and server performance.{% endblock %}
 
-{% block meta_keywords %}invoice admin, invoice dashboard, invoice statistics, invoice analytics{% endblock %}
+{% block meta_keywords %}http logs, server monitoring, traffic analytics, web statistics{% endblock %}
 
 {% block canonical_url %}/admin{% endblock %}
 
@@ -184,41 +184,41 @@
         <div class="admin-heading">
             <h1>Admin Dashboard</h1>
             <div class="admin-buttons">
-                <a href="{{ url_for('download_invoice_logs') }}" class="admin-btn download-btn"><i class="fas fa-download"></i> Download Invoice Logs</a>
+                <a href="{{ url_for('download_access_logs', key=request.args.get('key')) }}" class="admin-btn download-btn"><i class="fas fa-download"></i> Download HTTP Logs</a>
                 <a href="{{ request.url }}" class="admin-btn"><i class="fas fa-sync-alt"></i> Refresh</a>
             </div>
         </div>
 
         <!-- Usage Statistics Section -->
         <div class="stats-container">
-            <h3><i class="fas fa-chart-line"></i> Usage Statistics</h3>
+            <h3><i class="fas fa-chart-line"></i> Traffic Statistics</h3>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-title">Total Invoices Generated</div>
-                    <div class="stat-value">{{ total_invoices }}</div>
+                    <div class="stat-title">Total Requests</div>
+                    <div class="stat-value">{{ total_requests }}</div>
                     <div class="stat-detail">Since launch</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Unique Users</div>
-                    <div class="stat-value">{{ unique_users }}</div>
-                    <div class="stat-detail">Based on unique sessions</div>
+                    <div class="stat-title">Unique Visitors</div>
+                    <div class="stat-value">{{ unique_visitors }}</div>
+                    <div class="stat-detail">Based on unique IP addresses</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Today's Invoices</div>
-                    <div class="stat-value">{{ today_invoices }}</div>
-                    <div class="stat-detail">Generated in the last 24 hours</div>
+                    <div class="stat-title">Today's Requests</div>
+                    <div class="stat-value">{{ today_requests }}</div>
+                    <div class="stat-detail">In the last 24 hours</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Average Invoice Value</div>
-                    <div class="stat-value">${{ avg_invoice_value }}</div>
-                    <div class="stat-detail">Across all invoices</div>
+                    <div class="stat-title">Avg Response Time</div>
+                    <div class="stat-value">{{ avg_response_time }}s</div>
+                    <div class="stat-detail">Across all requests</div>
                 </div>
             </div>
         </div>
 
-        <!-- Recent Invoices Section -->
+        <!-- Recent HTTP Requests Section -->
         <div class="admin-section">
-            <h2>Recent Invoices</h2>
+            <h2>Recent HTTP Requests</h2>
             <div class="filter-controls">
                 <div class="filter-control">
                     <label for="date-filter">Date Range:</label>
@@ -230,8 +230,17 @@
                     </select>
                 </div>
                 <div class="filter-control">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="all">All Status</option>
+                        <option value="200">200 OK</option>
+                        <option value="404">404 Not Found</option>
+                        <option value="500">500 Server Error</option>
+                    </select>
+                </div>
+                <div class="filter-control">
                     <label for="search-filter">Search:</label>
-                    <input type="text" id="search-filter" placeholder="Invoice #, Company...">
+                    <input type="text" id="search-filter" placeholder="IP, Path, User Agent...">
                 </div>
                 <button class="admin-btn" id="apply-filters">Apply Filters</button>
             </div>
@@ -239,32 +248,38 @@
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th>Invoice #</th>
-                            <th>Date</th>
-                            <th>Company</th>
-                            <th>Client</th>
-                            <th>Amount</th>
+                            <th>Request ID</th>
+                            <th>Timestamp</th>
+                            <th>IP Address</th>
+                            <th>Method</th>
+                            <th>Path</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for invoice in recent_invoices %}
+                        {% for request in recent_requests %}
                         <tr>
-                            <td>{{ invoice.number }}</td>
-                            <td>{{ invoice.date }}</td>
-                            <td>{{ invoice.company }}</td>
-                            <td>{{ invoice.client }}</td>
-                            <td>${{ invoice.amount }}</td>
-                            <td><span class="status-active">Generated</span></td>
+                            <td>{{ request.id }}</td>
+                            <td>{{ request.timestamp }}</td>
+                            <td>{{ request.ip }}</td>
+                            <td>{{ request.method }}</td>
+                            <td>{{ request.path }}</td>
                             <td>
-                                <a href="{{ url_for('view_invoice', invoice_id=invoice.id) }}" class="admin-btn" style="padding: 4px 8px;">View</a>
+                                {% if request.status == '200' %}
+                                <span class="status-active">{{ request.status }}</span>
+                                {% else %}
+                                <span class="status-inactive">{{ request.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('view_request', request_id=request.id) }}" class="admin-btn" style="padding: 4px 8px;">Details</a>
                             </td>
                         </tr>
                         {% endfor %}
-                        {% if not recent_invoices %}
+                        {% if not recent_requests %}
                         <tr>
-                            <td colspan="7" style="text-align: center;">No invoices found.</td>
+                            <td colspan="7" style="text-align: center;">No requests found.</td>
                         </tr>
                         {% endif %}
                     </tbody>
@@ -279,9 +294,9 @@
             </div>
         </div>
 
-        <!-- System Logs Section -->
+        <!-- HTTP Access Logs Section -->
         <div class="admin-section">
-            <h2>System Logs</h2>
+            <h2>HTTP Access Logs</h2>
             <div class="admin-container">
                 {% if logs %}
                     {% for log in logs %}

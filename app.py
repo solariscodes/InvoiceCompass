@@ -56,109 +56,141 @@ def privacy():
 # Admin routes
 @app.route('/admin')
 def admin():
-    # Check for admin access (simple password protection)
+    # Check for admin access using environment variable
     admin_key = request.args.get('key')
-    if admin_key != 'invoicecompass':
+    admin_password = os.environ.get('ADMIN_KEY', 'default_admin_key')
+    
+    if admin_key != admin_password:
         return redirect(url_for('index'))
     
-    # Mock data for the admin dashboard
-    total_invoices = 1248
-    unique_users = 856
-    today_invoices = 42
-    avg_invoice_value = 1250.75
+    # HTTP traffic statistics
+    total_requests = 12482
+    unique_visitors = 4856
+    today_requests = 342
+    avg_response_time = 0.125  # in seconds
     
-    # Mock recent invoices data
-    recent_invoices = [
+    # Mock HTTP request logs
+    recent_requests = [
         {
-            'id': 'INV-2025-001',
-            'number': 'INV-2025-001',
-            'date': 'April 28, 2025',
-            'company': 'Acme Corporation',
-            'client': 'Wayne Enterprises',
-            'amount': '2,500.00'
+            'id': 'REQ-001',
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'ip': '192.168.1.101',
+            'method': 'GET',
+            'path': '/',
+            'status': '200',
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/96.0.4664.110'
         },
         {
-            'id': 'INV-2025-002',
-            'number': 'INV-2025-002',
-            'date': 'April 28, 2025',
-            'company': 'Stark Industries',
-            'client': 'Shield Corp',
-            'amount': '4,750.00'
+            'id': 'REQ-002',
+            'timestamp': (datetime.now() - timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S'),
+            'ip': '192.168.1.102',
+            'method': 'POST',
+            'path': '/generate-pdf',
+            'status': '200',
+            'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1.15'
         },
         {
-            'id': 'INV-2025-003',
-            'number': 'INV-2025-003',
-            'date': 'April 28, 2025',
-            'company': 'Pied Piper',
-            'client': 'Hooli',
-            'amount': '1,200.00'
+            'id': 'REQ-003',
+            'timestamp': (datetime.now() - timedelta(minutes=12)).strftime('%Y-%m-%d %H:%M:%S'),
+            'ip': '192.168.1.103',
+            'method': 'GET',
+            'path': '/invoice',
+            'status': '200',
+            'user_agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1) AppleWebKit/605.1.15 Mobile/15E148'
         },
         {
-            'id': 'INV-2025-004',
-            'number': 'INV-2025-004',
-            'date': 'April 27, 2025',
-            'company': 'Dunder Mifflin',
-            'client': 'Wernham Hogg',
-            'amount': '950.00'
+            'id': 'REQ-004',
+            'timestamp': (datetime.now() - timedelta(minutes=18)).strftime('%Y-%m-%d %H:%M:%S'),
+            'ip': '192.168.1.104',
+            'method': 'GET',
+            'path': '/terms',
+            'status': '200',
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Firefox/91.0'
         },
         {
-            'id': 'INV-2025-005',
-            'number': 'INV-2025-005',
-            'date': 'April 27, 2025',
-            'company': 'Initech',
-            'client': 'Cyberdyne Systems',
-            'amount': '3,200.00'
+            'id': 'REQ-005',
+            'timestamp': (datetime.now() - timedelta(minutes=25)).strftime('%Y-%m-%d %H:%M:%S'),
+            'ip': '192.168.1.105',
+            'method': 'GET',
+            'path': '/privacy',
+            'status': '200',
+            'user_agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/94.0.4606.81'
         }
     ]
     
-    # Mock system logs
+    # HTTP access logs
     logs = [
-        f"<strong>[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]</strong> Admin dashboard accessed from IP: 127.0.0.1",
-        f"<strong>[{(datetime.now() - timedelta(minutes=15)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-005 generated for Initech",
-        f"<strong>[{(datetime.now() - timedelta(minutes=45)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-004 generated for Dunder Mifflin",
-        f"<strong>[{(datetime.now() - timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-003 generated for Pied Piper",
-        f"<strong>[{(datetime.now() - timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-002 generated for Stark Industries",
-        f"<strong>[{(datetime.now() - timedelta(hours=5)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-001 generated for Acme Corporation",
-        f"<strong>[{(datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> System maintenance performed",
-        f"<strong>[{(datetime.now() - timedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Application deployed to production"
+        f"<strong>[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]</strong> 127.0.0.1 - - [GET /admin HTTP/1.1] 200 - Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.102 - - [POST /generate-pdf HTTP/1.1] 200 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=12)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.103 - - [GET /invoice HTTP/1.1] 200 - Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=18)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.104 - - [GET /terms HTTP/1.1] 200 - Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=25)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.105 - - [GET /privacy HTTP/1.1] 200 - Mozilla/5.0 (X11; Linux x86_64)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=30)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.106 - - [GET / HTTP/1.1] 200 - Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        f"<strong>[{(datetime.now() - timedelta(minutes=42)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.107 - - [GET /favicon.ico HTTP/1.1] 200 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        f"<strong>[{(datetime.now() - timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.108 - - [GET /static/css/styles.css HTTP/1.1] 200 - Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+        f"<strong>[{(datetime.now() - timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.109 - - [GET /static/js/main.js HTTP/1.1] 200 - Mozilla/5.0 (X11; Linux x86_64)",
+        f"<strong>[{(datetime.now() - timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.110 - - [GET /static/images/favicon.svg HTTP/1.1] 200 - Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1)"
     ]
     
+    # Add some 404 errors
+    logs.append(f"<strong>[{(datetime.now() - timedelta(hours=1, minutes=15)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.111 - - [GET /nonexistent-page HTTP/1.1] 404 - Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+    logs.append(f"<strong>[{(datetime.now() - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> 192.168.1.112 - - [GET /wp-admin HTTP/1.1] 404 - Mozilla/5.0 (compatible; Googlebot/2.1)")
+    
     return render_template('admin.html', 
-                           total_invoices=total_invoices,
-                           unique_users=unique_users,
-                           today_invoices=today_invoices,
-                           avg_invoice_value=avg_invoice_value,
-                           recent_invoices=recent_invoices,
+                           total_requests=total_requests,
+                           unique_visitors=unique_visitors,
+                           today_requests=today_requests,
+                           avg_response_time=avg_response_time,
+                           recent_requests=recent_requests,
                            logs=logs)
 
-@app.route('/download_invoice_logs')
-def download_invoice_logs():
-    # Check for admin access
+@app.route('/download_access_logs')
+def download_access_logs():
+    # Check for admin access using environment variable
     admin_key = request.args.get('key')
-    if admin_key != 'invoicecompass':
+    admin_password = os.environ.get('ADMIN_KEY', 'default_admin_key')
+    
+    if admin_key != admin_password:
         return redirect(url_for('index'))
     
-    # Create a simple log file
-    log_content = f"""InvoiceCompass System Logs
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+    # Create a simple log file in Apache Common Log Format
+    log_content = f"""# InvoiceCompass HTTP Access Logs
+# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+# Format: IP - - [timestamp] "METHOD /path HTTP/1.1" status size "referer" "user-agent"
 
 """
     
     # Add mock log entries
     for i in range(1, 101):
-        log_date = datetime.now() - timedelta(hours=i*2)
-        log_content += f"[{log_date.strftime('%Y-%m-%d %H:%M:%S')}] Invoice INV-2025-{1000+i} generated\n"
+        log_date = datetime.now() - timedelta(minutes=i*15)
+        ip = f"192.168.1.{100+i}"
+        methods = ['GET', 'POST', 'GET', 'GET', 'GET']  # More GETs than POSTs
+        method = methods[i % len(methods)]
+        paths = ['/', '/invoice', '/terms', '/privacy', '/static/css/styles.css', '/static/js/main.js', '/static/images/favicon.svg']
+        path = paths[i % len(paths)]
+        status = '200'
+        size = '1024'
+        referer = '-'
+        user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/96.0.4664.110'
+        
+        # Add some 404 errors
+        if i % 20 == 0:
+            path = '/nonexistent-page'
+            status = '404'
+            size = '512'
+        
+        log_content += f"{ip} - - [{log_date.strftime('%d/%b/%Y:%H:%M:%S +0000')}] \"{method} {path} HTTP/1.1\" {status} {size} \"{referer}\" \"{user_agent}\"\n"
     
     # Create a response with the log file
     response = make_response(log_content)
-    response.headers["Content-Disposition"] = "attachment; filename=invoice_logs.txt"
+    response.headers["Content-Disposition"] = "attachment; filename=access_logs.txt"
     response.headers["Content-Type"] = "text/plain"
     
     return response
 
-@app.route('/view_invoice/<invoice_id>')
-def view_invoice(invoice_id):
-    # This would normally fetch the invoice from a database
+@app.route('/view_request/<request_id>')
+def view_request(request_id):
+    # This would normally fetch the request details from logs
     # For now, we'll just redirect to the home page
     return redirect(url_for('index'))
 
