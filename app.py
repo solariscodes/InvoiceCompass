@@ -278,5 +278,13 @@ def download_pdf(filename):
     else:
         return jsonify({'error': 'File not found'}), 404
 
+# Create the pdfs directory if it doesn't exist
+pdfs_dir = os.path.join(app.static_folder, 'pdfs')
+os.makedirs(pdfs_dir, exist_ok=True)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use environment variable for port with a default of 5000
+    port = int(os.environ.get('PORT', 5000))
+    # In development, debug=True. In production, debug=False
+    debug = os.environ.get('FLASK_ENV', 'production') != 'production'
+    app.run(host='0.0.0.0', port=port, debug=debug)
