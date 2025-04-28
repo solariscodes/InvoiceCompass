@@ -58,10 +58,22 @@ def privacy():
 def admin():
     # Check for admin access using environment variable
     admin_key = request.args.get('key')
-    admin_password = os.environ.get('ADMIN_KEY', 'default_admin_key')
+    
+    # Direct admin key - replace this with your actual password
+    # This is a fallback if environment variables aren't working
+    ADMIN_PASSWORD = "invoicecompass"
+    
+    # Try to get from environment variable first
+    admin_password = os.environ.get('ADMIN_KEY', ADMIN_PASSWORD)
+    
+    print(f"Debug - Admin key provided: {admin_key}")
+    print(f"Debug - Admin password expected: {admin_password}")
     
     if admin_key != admin_password:
+        print(f"Debug - Authentication failed: keys don't match")
         return redirect(url_for('index'))
+    
+    print(f"Debug - Authentication successful")
     
     # HTTP traffic statistics
     total_requests = 12482
@@ -148,10 +160,21 @@ def admin():
 def download_access_logs():
     # Check for admin access using environment variable
     admin_key = request.args.get('key')
-    admin_password = os.environ.get('ADMIN_KEY', 'default_admin_key')
+    
+    # Direct admin key - same as in admin route
+    ADMIN_PASSWORD = "invoicecompass"
+    
+    # Try to get from environment variable first
+    admin_password = os.environ.get('ADMIN_KEY', ADMIN_PASSWORD)
+    
+    print(f"Debug - Download logs - Admin key provided: {admin_key}")
+    print(f"Debug - Download logs - Admin password expected: {admin_password}")
     
     if admin_key != admin_password:
+        print(f"Debug - Download logs - Authentication failed: keys don't match")
         return redirect(url_for('index'))
+    
+    print(f"Debug - Download logs - Authentication successful")
     
     # Create a simple log file in Apache Common Log Format
     log_content = f"""# InvoiceCompass HTTP Access Logs
