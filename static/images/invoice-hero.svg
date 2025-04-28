@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa" />
+  
+  <!-- Compass Design -->
+  <circle cx="400" cy="300" r="150" fill="#e9ecef" />
+  <circle cx="400" cy="300" r="140" fill="#f8f9fa" />
+  
+  <!-- Compass Cardinal Points -->
+  <text x="400" y="140" font-family="Arial" font-size="24" fill="#2c6fbb" text-anchor="middle">N</text>
+  <text x="560" y="300" font-family="Arial" font-size="24" fill="#2c6fbb" text-anchor="middle">E</text>
+  <text x="400" y="470" font-family="Arial" font-size="24" fill="#2c6fbb" text-anchor="middle">S</text>
+  <text x="240" y="300" font-family="Arial" font-size="24" fill="#2c6fbb" text-anchor="middle">W</text>
+  
+  <!-- Compass Needle -->
+  <polygon points="400,170 410,300 400,430 390,300" fill="#f5a623" />
+  <polygon points="370,300 400,290 430,300 400,310" fill="#2c6fbb" />
+  <circle cx="400" cy="300" r="15" fill="#4a90e2" />
+  <circle cx="400" cy="300" r="10" fill="#f8f9fa" />
+  
+  <!-- Invoice Paper -->
+  <rect x="500" y="200" width="200" height="250" rx="5" ry="5" fill="white" stroke="#dee2e6" stroke-width="2" />
+  <line x1="520" y1="240" x2="680" y2="240" stroke="#dee2e6" stroke-width="2" />
+  <line x1="520" y1="280" x2="680" y2="280" stroke="#dee2e6" stroke-width="2" />
+  <line x1="520" y1="320" x2="680" y2="320" stroke="#dee2e6" stroke-width="2" />
+  <line x1="520" y1="360" x2="680" y2="360" stroke="#dee2e6" stroke-width="2" />
+  <line x1="520" y1="400" x2="680" y2="400" stroke="#dee2e6" stroke-width="2" />
+  
+  <!-- Invoice Title -->
+  <text x="600" y="220" font-family="Arial" font-size="16" font-weight="bold" fill="#2c6fbb" text-anchor="middle">INVOICE</text>
+  
+  <!-- Second Invoice Paper -->
+  <rect x="100" y="200" width="200" height="250" rx="5" ry="5" fill="white" stroke="#dee2e6" stroke-width="2" />
+  <line x1="120" y1="240" x2="280" y2="240" stroke="#dee2e6" stroke-width="2" />
+  <line x1="120" y1="280" x2="280" y2="280" stroke="#dee2e6" stroke-width="2" />
+  <line x1="120" y1="320" x2="280" y2="320" stroke="#dee2e6" stroke-width="2" />
+  <line x1="120" y1="360" x2="280" y2="360" stroke="#dee2e6" stroke-width="2" />
+  <line x1="120" y1="400" x2="280" y2="400" stroke="#dee2e6" stroke-width="2" />
+  
+  <!-- Invoice Title -->
+  <text x="200" y="220" font-family="Arial" font-size="16" font-weight="bold" fill="#2c6fbb" text-anchor="middle">INVOICE</text>
+</svg>

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}InvoiceCompass - Free Invoice Creator{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Free Invoice Template</h1>
+                <h2>Make beautiful Invoices with one click!</h2>
+                <p>Welcome to InvoiceCompass, trusted by millions of people. InvoiceCompass lets you instantly make invoices with our attractive invoice template straight from your web browser. The invoices you make can be sent and paid online or downloaded as a PDF.</p>
+                <p>Did we also mention that InvoiceCompass is <strong>100% free</strong> and lets you generate an unlimited number of invoices with no hidden fees?</p>
+                <a href="/invoice" class="btn-cta">Use Invoice Creator</a>
+            </div>
+            <div class="hero-preview">
+                <div class="home-preview-container">
+                    <div class="home-preview-inner">
+                        <!-- HTML Invoice Preview Mockup -->
+                        <div class="mockup-invoice">
+                            <div class="mockup-header">
+                                <div class="mockup-logo">INVOICE</div>
+                                <div class="mockup-details">
+                                    <div><strong>Invoice #:</strong> INV-2025-1234</div>
+                                    <div><strong>Date:</strong> April 28, 2025</div>
+                                    <div><strong>Due:</strong> May 28, 2025</div>
+                                </div>
+                            </div>
+                            <div class="mockup-addresses">
+                                <div class="mockup-from">
+                                    <div class="mockup-label">FROM</div>
+                                    <div>Your Company</div>
+                                    <div>company@example.com</div>
+                                    <div>123 Business St, City</div>
+                                </div>
+                                <div class="mockup-to">
+                                    <div class="mockup-label">TO</div>
+                                    <div>Client Name</div>
+                                    <div>client@example.com</div>
+                                    <div>456 Client Ave, City</div>
+                                </div>
+                            </div>
+                            <div class="mockup-items">
+                                <table class="mockup-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Qty</th>
+                                            <th>Price</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Web Design</td>
+                                            <td>1</td>
+                                            <td>$1,200.00</td>
+                                            <td>$1,200.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hosting (1 year)</td>
+                                            <td>1</td>
+                                            <td>$150.00</td>
+                                            <td>$150.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mockup-summary">
+                                <div class="mockup-total-row">
+                                    <div>Total:</div>
+                                    <div>$1,350.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fast & Simple</h3>
+                <p>Create and send an invoice in under 2 minutes. InvoiceCompass keeps it simple and gets the job done fast.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3>PDF Download</h3>
+                <p>Download your invoice as a PDF to save for your records or to send to your clients.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Professional Design</h3>
+                <p>Our invoice template is designed to be professional, clean, and customizable.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <h3>Unlimited Invoices</h3>
+                <p>Create as many invoices as you need, completely free. No limits, no restrictions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <h2>Trusted by Millions of People</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p>"InvoiceCompass has saved me so much time. I can create professional invoices in seconds!"</p>
+                <div class="testimonial-author">- Sarah J., Freelance Designer</div>
+            </div>
+            <div class="testimonial">
+                <p>"The simplest invoice creator I've ever used. Clean, fast, and it just works."</p>
+                <div class="testimonial-author">- Michael T., Small Business Owner</div>
+            </div>
+            <div class="testimonial">
+                <p>"I love that I can create unlimited invoices for free. Perfect for my growing business."</p>
+                <div class="testimonial-author">- Lisa R., Consultant</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to create your invoice?</h2>
+            <p>It's free and takes less than 2 minutes</p>
+            <a href="/invoice" class="btn-cta">Create Invoice Now</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
