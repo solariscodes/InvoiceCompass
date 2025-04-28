@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file, redirect, url_for, make_response
 import io
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.lib.units import inch, cm
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import uuid
 
@@ -52,6 +52,115 @@ def privacy():
 # @app.route('/faq')
 # def faq():
 #     return render_template('faq.html')
+
+# Admin routes
+@app.route('/admin')
+def admin():
+    # Check for admin access (simple password protection)
+    admin_key = request.args.get('key')
+    if admin_key != 'invoicecompass':
+        return redirect(url_for('index'))
+    
+    # Mock data for the admin dashboard
+    total_invoices = 1248
+    unique_users = 856
+    today_invoices = 42
+    avg_invoice_value = 1250.75
+    
+    # Mock recent invoices data
+    recent_invoices = [
+        {
+            'id': 'INV-2025-001',
+            'number': 'INV-2025-001',
+            'date': 'April 28, 2025',
+            'company': 'Acme Corporation',
+            'client': 'Wayne Enterprises',
+            'amount': '2,500.00'
+        },
+        {
+            'id': 'INV-2025-002',
+            'number': 'INV-2025-002',
+            'date': 'April 28, 2025',
+            'company': 'Stark Industries',
+            'client': 'Shield Corp',
+            'amount': '4,750.00'
+        },
+        {
+            'id': 'INV-2025-003',
+            'number': 'INV-2025-003',
+            'date': 'April 28, 2025',
+            'company': 'Pied Piper',
+            'client': 'Hooli',
+            'amount': '1,200.00'
+        },
+        {
+            'id': 'INV-2025-004',
+            'number': 'INV-2025-004',
+            'date': 'April 27, 2025',
+            'company': 'Dunder Mifflin',
+            'client': 'Wernham Hogg',
+            'amount': '950.00'
+        },
+        {
+            'id': 'INV-2025-005',
+            'number': 'INV-2025-005',
+            'date': 'April 27, 2025',
+            'company': 'Initech',
+            'client': 'Cyberdyne Systems',
+            'amount': '3,200.00'
+        }
+    ]
+    
+    # Mock system logs
+    logs = [
+        f"<strong>[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]</strong> Admin dashboard accessed from IP: 127.0.0.1",
+        f"<strong>[{(datetime.now() - timedelta(minutes=15)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-005 generated for Initech",
+        f"<strong>[{(datetime.now() - timedelta(minutes=45)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-004 generated for Dunder Mifflin",
+        f"<strong>[{(datetime.now() - timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-003 generated for Pied Piper",
+        f"<strong>[{(datetime.now() - timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-002 generated for Stark Industries",
+        f"<strong>[{(datetime.now() - timedelta(hours=5)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Invoice INV-2025-001 generated for Acme Corporation",
+        f"<strong>[{(datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> System maintenance performed",
+        f"<strong>[{(datetime.now() - timedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')}]</strong> Application deployed to production"
+    ]
+    
+    return render_template('admin.html', 
+                           total_invoices=total_invoices,
+                           unique_users=unique_users,
+                           today_invoices=today_invoices,
+                           avg_invoice_value=avg_invoice_value,
+                           recent_invoices=recent_invoices,
+                           logs=logs)
+
+@app.route('/download_invoice_logs')
+def download_invoice_logs():
+    # Check for admin access
+    admin_key = request.args.get('key')
+    if admin_key != 'invoicecompass':
+        return redirect(url_for('index'))
+    
+    # Create a simple log file
+    log_content = f"""InvoiceCompass System Logs
+Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+"""
+    
+    # Add mock log entries
+    for i in range(1, 101):
+        log_date = datetime.now() - timedelta(hours=i*2)
+        log_content += f"[{log_date.strftime('%Y-%m-%d %H:%M:%S')}] Invoice INV-2025-{1000+i} generated\n"
+    
+    # Create a response with the log file
+    response = make_response(log_content)
+    response.headers["Content-Disposition"] = "attachment; filename=invoice_logs.txt"
+    response.headers["Content-Type"] = "text/plain"
+    
+    return response
+
+@app.route('/view_invoice/<invoice_id>')
+def view_invoice(invoice_id):
+    # This would normally fetch the invoice from a database
+    # For now, we'll just redirect to the home page
+    return redirect(url_for('index'))
 
 @app.route('/sitemap.xml')
 def sitemap():
