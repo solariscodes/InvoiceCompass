@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}InvoiceCompass - Free Invoice Creator{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}InvoiceCompass - 100% free invoice generator for freelancers and small businesses. Create professional PDF invoices in seconds with no hidden fees.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}invoice generator, free invoice maker, invoice template, PDF invoice, billing software, freelancer invoice, small business invoice{% endblock %}">
+    <meta name="author" content="InvoiceCompass.com">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoicecompass.com{% block og_url %}/{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}InvoiceCompass - 100% Free Invoice Generator{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Create professional PDF invoices in seconds with our 100% free invoice generator. No hidden fees, no registration required.{% endblock %}">
+    <meta property="og:image" content="{{ url_for('static', filename='images/og-image.jpg', _external=True) }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://invoicecompass.com{% block twitter_url %}/{% endblock %}">
+    <meta property="twitter:title" content="{% block twitter_title %}InvoiceCompass - 100% Free Invoice Generator{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}Create professional PDF invoices in seconds with our 100% free invoice generator. No hidden fees, no registration required.{% endblock %}">
+    <meta property="twitter:image" content="{{ url_for('static', filename='images/og-image.jpg', _external=True) }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://invoicecompass.com{% block canonical_url %}/{% endblock %}">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -20,8 +49,7 @@
                 </a>
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="/invoice">Invoice Template</a></li>
-                        <li><a href="/resources">Resources</a></li>
+                        <li><a href="/invoice">Create Invoice</a></li>
                     </ul>
                 </nav>
             </div>
@@ -53,5 +81,48 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block extra_js %}{% endblock %}
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "InvoiceCompass",
+      "url": "https://invoicecompass.com",
+      "description": "100% free invoice generator for freelancers and small businesses. Create professional PDF invoices in seconds with no hidden fees.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "InvoiceCompass",
+        "url": "https://invoicecompass.com"
+      }
+    }
+    </script>
+    
+    <!-- Organization Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "InvoiceCompass",
+      "url": "https://invoicecompass.com",
+      "logo": "https://invoicecompass.com{{ url_for('static', filename='images/favicon.svg') }}",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@invoicecompass.com",
+        "contactType": "customer service"
+      }
+    }
+    </script>
+    
+    <!-- Breadcrumb Structured Data -->
+    {% block structured_data %}{% endblock %}
 </body>
 </html>

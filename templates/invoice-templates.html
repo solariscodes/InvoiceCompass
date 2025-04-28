@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Invoice Templates - InvoiceCompass{% endblock %}
+
+{% block content %}
+<section class="resource-page">
+    <div class="container">
+        <div class="resource-header">
+            <h1>Invoice Templates</h1>
+            <p class="subtitle">Download additional invoice templates for specific industries and use cases</p>
+        </div>
+        
+        <div class="resource-content">
+            <div class="resource-section">
+                <h2>Why Use Professional Invoice Templates?</h2>
+                <p>Using professional invoice templates offers several advantages:</p>
+                <ul>
+                    <li>Saves time on invoice creation</li>
+                    <li>Ensures consistent branding across all invoices</li>
+                    <li>Includes all necessary fields and information</li>
+                    <li>Projects a professional image to clients</li>
+                    <li>Helps maintain organized financial records</li>
+                </ul>
+                <p>InvoiceCompass offers a variety of templates designed for different industries and business needs. All templates are fully customizable and available for free download.</p>
+            </div>
+            
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/standard-invoice.png') }}" alt="Standard Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>Standard Business Invoice</h3>
+                        <p>A clean, professional invoice template suitable for most businesses. Includes all essential fields and a modern design.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/freelancer-invoice.png') }}" alt="Freelancer Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>Freelancer Invoice</h3>
+                        <p>Designed specifically for freelancers and independent contractors. Includes hourly rate tracking and project details.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/consultant-invoice.png') }}" alt="Consultant Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>Consultant Invoice</h3>
+                        <p>Perfect for consultants and professional service providers. Includes detailed service descriptions and terms.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/retail-invoice.png') }}" alt="Retail Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>Retail Invoice</h3>
+                        <p>Designed for retail businesses. Includes product codes, quantities, and customer information fields.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/service-invoice.png') }}" alt="Service Business Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>Service Business Invoice</h3>
+                        <p>Ideal for service-based businesses. Includes service descriptions, rates, and customer satisfaction fields.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <img src="{{ url_for('static', filename='images/templates/international-invoice.png') }}" alt="International Invoice Template">
+                    </div>
+                    <div class="template-info">
+                        <h3>International Invoice</h3>
+                        <p>Designed for international business. Includes currency conversion, VAT/GST fields, and international shipping details.</p>
+                        <a href="/invoice" class="btn-primary">Use Template</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-section">
+                <h2>Customizing Your Invoice Template</h2>
+                <p>All InvoiceCompass templates can be fully customized to match your brand and business needs. Here's how to make the most of our templates:</p>
+                <ol>
+                    <li><strong>Add your logo and branding:</strong> Upload your company logo and customize colors to match your brand.</li>
+                    <li><strong>Customize fields:</strong> Add, remove, or modify fields to suit your specific business requirements.</li>
+                    <li><strong>Set default values:</strong> Save time by setting default values for fields you use frequently.</li>
+                    <li><strong>Add payment terms:</strong> Clearly communicate your payment expectations and accepted methods.</li>
+                    <li><strong>Include notes:</strong> Add custom notes or terms and conditions to provide additional information.</li>
+                </ol>
+                <p>Start with one of our templates and make it your own with our easy-to-use invoice creator.</p>
+            </div>
+        </div>
+        
+        <div class="resource-navigation">
+            <a href="/" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

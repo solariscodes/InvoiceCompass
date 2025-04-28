@@ -27,9 +27,39 @@ def terms():
 def privacy():
     return render_template('privacy.html')
 
-@app.route('/resources')
-def resources():
-    return render_template('resources.html')
+# Resources page removed
+# @app.route('/resources')
+# def resources():
+#     return render_template('resources.html')
+
+# All resource pages removed
+# @app.route('/invoicing-guide')
+# def invoicing_guide():
+#     return render_template('invoicing-guide.html')
+# 
+# @app.route('/invoice-templates')
+# def invoice_templates():
+#     return render_template('invoice-templates.html')
+# 
+# @app.route('/tax-calculator')
+# def tax_calculator():
+#     return render_template('tax-calculator.html')
+# 
+# @app.route('/international-invoicing')
+# def international_invoicing():
+#     return render_template('international-invoicing.html')
+# 
+# @app.route('/faq')
+# def faq():
+#     return render_template('faq.html')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_file('static/sitemap.xml')
+
+@app.route('/robots.txt')
+def robots():
+    return send_file('static/robots.txt')
 
 @app.route('/generate-pdf', methods=['POST'])
 def generate_pdf():

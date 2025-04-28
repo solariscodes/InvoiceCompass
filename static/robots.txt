@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://invoicecompass.com/sitemap.xml
+
+# Disallow PDF generation API endpoint
+Disallow: /generate-pdf
+Disallow: /download-pdf

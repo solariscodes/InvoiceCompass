@@ -73,4 +73,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- The example invoice PDF was used as a reference for the generated output format
+- Thanks to all contributors who helped shape this project

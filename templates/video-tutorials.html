@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block title %}Video Tutorials - InvoiceCompass{% endblock %}
+
+{% block content %}
+<section class="resource-page">
+    <div class="container">
+        <div class="resource-header">
+            <h1>Video Tutorials</h1>
+            <p class="subtitle">Watch step-by-step tutorials on how to create and manage invoices with InvoiceCompass</p>
+        </div>
+        
+        <div class="resource-content">
+            <div class="resource-section">
+                <h2>Getting Started with InvoiceCompass</h2>
+                <p>These introductory videos will help you get familiar with InvoiceCompass and its features.</p>
+                
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/intro-thumbnail.jpg') }}" alt="Introduction to InvoiceCompass">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Introduction to InvoiceCompass</h3>
+                            <p>Learn about InvoiceCompass and how it can help you create professional invoices quickly and easily.</p>
+                            <span class="video-duration">3:45</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/create-invoice-thumbnail.jpg') }}" alt="Creating Your First Invoice">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Creating Your First Invoice</h3>
+                            <p>A step-by-step guide to creating your first invoice with InvoiceCompass.</p>
+                            <span class="video-duration">5:12</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/customize-thumbnail.jpg') }}" alt="Customizing Your Invoice">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Customizing Your Invoice</h3>
+                            <p>Learn how to personalize your invoices with your logo, colors, and branding.</p>
+                            <span class="video-duration">4:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-section">
+                <h2>Advanced Features</h2>
+                <p>Dive deeper into InvoiceCompass's advanced features to make the most of your invoicing process.</p>
+                
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/tax-thumbnail.jpg') }}" alt="Working with Taxes">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Working with Taxes</h3>
+                            <p>Learn how to properly add and calculate taxes on your invoices for different jurisdictions.</p>
+                            <span class="video-duration">6:18</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/recurring-thumbnail.jpg') }}" alt="Creating Recurring Invoices">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Creating Recurring Invoices</h3>
+                            <p>Save time by learning how to create templates for recurring invoices.</p>
+                            <span class="video-duration">4:55</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/international-thumbnail.jpg') }}" alt="International Invoicing">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>International Invoicing</h3>
+                            <p>Tips and best practices for creating invoices for international clients.</p>
+                            <span class="video-duration">7:22</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-section">
+                <h2>Tips and Best Practices</h2>
+                <p>Learn professional invoicing techniques to improve your business operations.</p>
+                
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/professional-thumbnail.jpg') }}" alt="Creating Professional Invoices">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Creating Professional Invoices</h3>
+                            <p>Design tips and best practices for creating invoices that reflect your brand professionally.</p>
+                            <span class="video-duration">5:40</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/payment-thumbnail.jpg') }}" alt="Getting Paid Faster">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Getting Paid Faster</h3>
+                            <p>Strategies and tips to encourage clients to pay invoices promptly.</p>
+                            <span class="video-duration">6:05</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="{{ url_for('static', filename='images/videos/organize-thumbnail.jpg') }}" alt="Organizing Your Invoices">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Organizing Your Invoices</h3>
+                            <p>Learn how to effectively organize, store, and track your invoices for better financial management.</p>
+                            <span class="video-duration">4:48</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-section video-coming-soon">
+                <h2>Coming Soon</h2>
+                <p>We're constantly adding new tutorial videos to help you make the most of InvoiceCompass. Check back soon for more content!</p>
+                
+                <div class="coming-soon-topics">
+                    <div class="coming-soon-topic">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h3>Advanced Invoice Customization</h3>
+                    </div>
+                    <div class="coming-soon-topic">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Invoice Analytics and Reporting</h3>
+                    </div>
+                    <div class="coming-soon-topic">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Multi-Currency Invoicing</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resource-navigation">
+            <a href="/" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        videoCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // In a real implementation, this would open a video player
+                // For now, we'll just show an alert
+                alert('Video player functionality will be implemented soon. Thank you for your interest!');
+            });
+        });
+    });
+</script>
+{% endblock %}

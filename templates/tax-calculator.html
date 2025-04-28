@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %}Tax Calculator - InvoiceCompass{% endblock %}
+
+{% block content %}
+<section class="resource-page">
+    <div class="container">
+        <div class="resource-header">
+            <h1>Tax Calculator</h1>
+            <p class="subtitle">Calculate sales tax, VAT, and other tax requirements for your invoices</p>
+        </div>
+        
+        <div class="resource-content">
+            <div class="resource-section">
+                <h2>Invoice Tax Calculator</h2>
+                <p>Use this calculator to determine the correct tax amount for your invoices. Simply enter your subtotal and tax rate to calculate the tax amount and total.</p>
+                
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="subtotal">Subtotal Amount</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" id="subtotal" class="form-control" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tax-rate">Tax Rate (%)</label>
+                            <div class="input-group">
+                                <input type="number" id="tax-rate" class="form-control" placeholder="0.0" step="0.1" min="0" max="100">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        
+                        <button type="button" id="calculate-tax" class="btn-primary">Calculate</button>
+                    </div>
+                    
+                    <div class="calculator-results">
+                        <div class="result-item">
+                            <span class="result-label">Subtotal:</span>
+                            <span class="result-value" id="result-subtotal">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Tax Amount:</span>
+                            <span class="result-value" id="result-tax">$0.00</span>
+                        </div>
+                        <div class="result-item total">
+                            <span class="result-label">Total:</span>
+                            <span class="result-value" id="result-total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-section">
+                <h2>Understanding Sales Tax and VAT</h2>
+                <p>Different regions have different tax requirements for invoices. Here's a brief overview of the most common types:</p>
+                
+                <h3>Sales Tax (United States)</h3>
+                <p>Sales tax in the US varies by state, county, and sometimes city. It's typically a percentage added to the sale of goods and some services. As a business, you're responsible for:</p>
+                <ul>
+                    <li>Determining if you have nexus (tax presence) in a state</li>
+                    <li>Collecting the correct amount of sales tax from customers</li>
+                    <li>Remitting the collected tax to the appropriate tax authority</li>
+                    <li>Filing sales tax returns on time</li>
+                </ul>
+                
+                <h3>Value Added Tax (VAT) - International</h3>
+                <p>VAT is common in many countries outside the US, including the European Union, Canada (GST/HST), and Australia (GST). Unlike sales tax, VAT is:</p>
+                <ul>
+                    <li>Collected at each stage of the supply chain</li>
+                    <li>Generally more standardized within a country</li>
+                    <li>Often has specific requirements for invoice format and information</li>
+                </ul>
+                
+                <h3>When to Include Tax on Invoices</h3>
+                <p>Whether to include tax on your invoice depends on several factors:</p>
+                <ul>
+                    <li><strong>Your location:</strong> Tax laws in your jurisdiction</li>
+                    <li><strong>Customer location:</strong> Different rates may apply for out-of-state or international customers</li>
+                    <li><strong>Type of goods/services:</strong> Some may be exempt from tax</li>
+                    <li><strong>Customer type:</strong> Business-to-business (B2B) vs. business-to-consumer (B2C) transactions often have different rules</li>
+                </ul>
+                <p>Always consult with a tax professional to ensure compliance with all applicable tax laws in your jurisdiction.</p>
+            </div>
+            
+            <div class="resource-section">
+                <h2>Common Tax Rates by Region</h2>
+                <p>Below are approximate tax rates for various regions. Please note that these rates may change and can vary within regions. Always verify the current rates for your specific location.</p>
+                
+                <div class="tax-rates-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Country/Region</th>
+                                <th>Tax Type</th>
+                                <th>Typical Rate Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>United States</td>
+                                <td>Sales Tax</td>
+                                <td>0% - 10.25% (varies by state/locality)</td>
+                            </tr>
+                            <tr>
+                                <td>Canada</td>
+                                <td>GST/HST/PST</td>
+                                <td>5% - 15% (varies by province)</td>
+                            </tr>
+                            <tr>
+                                <td>European Union</td>
+                                <td>VAT</td>
+                                <td>17% - 27% (varies by country)</td>
+                            </tr>
+                            <tr>
+                                <td>United Kingdom</td>
+                                <td>VAT</td>
+                                <td>20% (standard rate)</td>
+                            </tr>
+                            <tr>
+                                <td>Australia</td>
+                                <td>GST</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>New Zealand</td>
+                                <td>GST</td>
+                                <td>15%</td>
+                            </tr>
+                            <tr>
+                                <td>Japan</td>
+                                <td>Consumption Tax</td>
+                                <td>10%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resource-navigation">
+            <a href="/" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calculateButton = document.getElementById('calculate-tax');
+        const subtotalInput = document.getElementById('subtotal');
+        const taxRateInput = document.getElementById('tax-rate');
+        const resultSubtotal = document.getElementById('result-subtotal');
+        const resultTax = document.getElementById('result-tax');
+        const resultTotal = document.getElementById('result-total');
+        
+        calculateButton.addEventListener('click', function() {
+            const subtotal = parseFloat(subtotalInput.value) || 0;
+            const taxRate = parseFloat(taxRateInput.value) || 0;
+            
+            const taxAmount = subtotal * (taxRate / 100);
+            const total = subtotal + taxAmount;
+            
+            resultSubtotal.textContent = '$' + subtotal.toFixed(2);
+            resultTax.textContent = '$' + taxAmount.toFixed(2);
+            resultTotal.textContent = '$' + total.toFixed(2);
+        });
+    });
+</script>
+{% endblock %}

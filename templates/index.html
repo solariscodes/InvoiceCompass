@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 
-{% block title %}InvoiceCompass - Free Invoice Creator{% endblock %}
+{% block title %}InvoiceCompass - 100% Free Invoice Generator | Create Professional Invoices{% endblock %}
+
+{% block meta_description %}InvoiceCompass is a 100% free invoice generator that helps freelancers and small businesses create professional PDF invoices in seconds. No registration, no hidden fees.{% endblock %}
+
+{% block meta_keywords %}free invoice generator, invoice maker, PDF invoice creator, professional invoice template, small business invoicing, freelancer invoice, no registration invoice{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "InvoiceCompass - 100% Free Invoice Generator",
+  "description": "Create professional PDF invoices in seconds with our 100% free invoice generator. No hidden fees, no registration required.",
+  "url": "https://invoicecompass.com/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".hero-text h1", ".hero-text h2", ".hero-text p"]
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <section class="hero">

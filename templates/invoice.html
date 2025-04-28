@@ -1,16 +1,45 @@
 {% extends 'base.html' %}
 
-{% block title %}Free Invoice Creator - InvoiceCompass{% endblock %}
+{% block title %}Create Invoice - Generate Professional Invoices | InvoiceCompass{% endblock %}
+
+{% block meta_description %}Create professional invoices in seconds with our 100% free invoice generator. Customize your invoice with your logo, add line items, calculate taxes, and download as PDF.{% endblock %}
+
+{% block meta_keywords %}free invoice creator, invoice generator, PDF invoice, business invoice template, create invoice online, professional invoice maker{% endblock %}
+
+{% block canonical_url %}/invoice{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Create Invoice - Generate Professional Invoices",
+  "description": "Create professional invoices in seconds with our 100% free invoice generator. Customize your invoice with your logo, add line items, calculate taxes, and download as PDF.",
+  "url": "https://invoicecompass.com/invoice",
+  "mainEntity": {
+    "@type": "SoftwareApplication",
+    "name": "InvoiceCompass Invoice Creator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+}
+</script>
 {% endblock %}
 
 {% block content %}
 <div class="invoice-generator">
     <div class="container">
         <div class="invoice-header">
-            <h1>Free Invoice Creator</h1>
+            <h1>Create Invoice</h1>
             <p class="subtitle">Create a professional invoice in seconds - <strong>100% Free, No Hidden Fees</strong></p>
         </div>
         
