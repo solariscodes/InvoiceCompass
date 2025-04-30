@@ -102,6 +102,10 @@
 
 <section class="features">
     <div class="container">
+        <!-- Ad Container -->
+        <div class="ad-container-center">
+            <div id="diclotrans-ad-container"></div>
+        </div>
         <div class="features-grid">
             <div class="feature">
                 <div class="feature-icon">
@@ -168,4 +172,17 @@
 
 {% block extra_js %}
 <script type="text/javascript" src="https://cdn.diclotrans.com/sdk/v1/50177/0f543c6ab5e09260e8755ce5ff6375bb8ed45841/lib.js"></script>
+<script>
+  // Custom script to ensure ad is displayed in our container
+  document.addEventListener('DOMContentLoaded', function() {
+    // If the ad library provides a custom initialization function, you might need to call it here
+    // This is a placeholder - the actual implementation depends on the Diclotrans API
+    if (typeof diclotrans !== 'undefined' && diclotrans.hasOwnProperty('init')) {
+      diclotrans.init({
+        container: 'diclotrans-ad-container',
+        position: 'center'
+      });
+    }
+  });
+</script>
 {% endblock %}
