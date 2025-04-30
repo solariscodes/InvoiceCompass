@@ -104,7 +104,14 @@
     <div class="container">
         <!-- Ad Container -->
         <div class="ad-container-center">
-            <div id="diclotrans-ad-container"></div>
+            <div id="diclotrans-ad-container">
+                <!-- Fallback content if ad doesn't load -->
+                <a href="https://invoicecompass.com/invoice" class="ad-fallback">
+                    <div class="ad-fallback-content">
+                        <p>Create your professional invoice now - 100% Free!</p>
+                    </div>
+                </a>
+            </div>
         </div>
         <div class="features-grid">
             <div class="feature">
@@ -176,12 +183,27 @@
   // Custom script to ensure ad is displayed in our container
   document.addEventListener('DOMContentLoaded', function() {
     // If the ad library provides a custom initialization function, you might need to call it here
-    // This is a placeholder - the actual implementation depends on the Diclotrans API
     if (typeof diclotrans !== 'undefined' && diclotrans.hasOwnProperty('init')) {
       diclotrans.init({
         container: 'diclotrans-ad-container',
-        position: 'center'
+        position: 'center',
+        fallbackUrl: 'https://invoicecompass.com/invoice'
       });
+      
+      // Hide the fallback content if the ad loads successfully
+      const adContainer = document.getElementById('diclotrans-ad-container');
+      const fallbackElement = adContainer.querySelector('.ad-fallback');
+      
+      // Check if ad is loaded (this is a simplified approach, actual implementation may vary)
+      setTimeout(function() {
+        // If the ad container has children other than our fallback, assume ad loaded
+        if (adContainer.children.length > 1 || 
+            (adContainer.children.length === 1 && !adContainer.children[0].classList.contains('ad-fallback'))) {
+          if (fallbackElement) {
+            fallbackElement.style.display = 'none';
+          }
+        }
+      }, 2000); // Give the ad 2 seconds to load
     }
   });
 </script>

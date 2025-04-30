@@ -258,6 +258,44 @@ body {
     width: 100%;
     max-width: 728px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fallback ad styling */
+.ad-fallback {
+    display: block;
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ad-fallback:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ad-fallback-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.ad-fallback-content p {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
 }
 
 .features-grid {
