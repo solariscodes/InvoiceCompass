@@ -102,9 +102,9 @@
 
 <section class="features">
     <div class="container">
-        <!-- Ad Container -->
-        <div class="ad-container-center">
-            <div id="diclotrans-ad-container">
+        <!-- Ad Container with forced centering -->
+        <div class="ad-container-center" style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center; margin: 0 auto 40px;">
+            <div id="diclotrans-ad-container" style="margin: 0 auto; display: flex; justify-content: center; align-items: center; width: 100%; max-width: 728px;">
                 <!-- Fallback content if ad doesn't load -->
                 <a href="https://invoicecompass.com/invoice" class="ad-fallback">
                     <div class="ad-fallback-content">
@@ -194,16 +194,40 @@
       const adContainer = document.getElementById('diclotrans-ad-container');
       const fallbackElement = adContainer.querySelector('.ad-fallback');
       
-      // Check if ad is loaded (this is a simplified approach, actual implementation may vary)
-      setTimeout(function() {
-        // If the ad container has children other than our fallback, assume ad loaded
+      // Force centering of the ad after it loads
+      const forceAdCentering = function() {
+        // Apply centering to the ad container
+        adContainer.style.margin = '0 auto';
+        adContainer.style.display = 'flex';
+        adContainer.style.justifyContent = 'center';
+        adContainer.style.alignItems = 'center';
+        adContainer.style.width = '100%';
+        adContainer.style.maxWidth = '728px';
+        
+        // Apply centering to any iframe or div inside the container
+        const adElements = adContainer.querySelectorAll('iframe, div');
+        adElements.forEach(function(element) {
+          if (element !== fallbackElement && !element.classList.contains('ad-fallback-content')) {
+            element.style.margin = '0 auto';
+            element.style.display = 'block';
+            element.style.maxWidth = '100%';
+          }
+        });
+        
+        // Hide the fallback if ad loaded
         if (adContainer.children.length > 1 || 
             (adContainer.children.length === 1 && !adContainer.children[0].classList.contains('ad-fallback'))) {
           if (fallbackElement) {
             fallbackElement.style.display = 'none';
           }
         }
-      }, 2000); // Give the ad 2 seconds to load
+      };
+      
+      // Apply centering immediately and after a delay to ensure it works
+      forceAdCentering();
+      setTimeout(forceAdCentering, 1000); // 1 second after load
+      setTimeout(forceAdCentering, 2000); // 2 seconds after load
+      setTimeout(forceAdCentering, 3000); // 3 seconds after load
     }
   });
 </script>
