@@ -3,7 +3,7 @@
 InvoiceCompass is a **100% free**, modern, user-friendly web application for generating professional invoices. The application guides users through a simple step-by-step process to create and download customized PDF invoices with no hidden fees or limitations.
 
 Check it live:
-[Visit IPSherlock, the web detective](https://www.ipsherlock.com)
+[Make beautiful Invoices with one click!](https://invoicecompass.com/)
 ## Features
 
 - **100% Free**: Create unlimited invoices with no hidden fees
